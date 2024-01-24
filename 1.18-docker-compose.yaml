@@ -1,0 +1,287 @@
+version: "2.4"
+# Build out a local deployment using the DevOps server profiles and images
+#
+# For PingOne Advanced Services (P1AS) release 1.18
+#**********************
+# PLEASE READ
+#**********************
+#
+# The purpose of this deployment is to be able to get the base templates for PingFederate
+# and customize the user fasing pages. This also provides a base PingDirectory and
+# PingAccess deployment that can be used to prepare templates and scripts for those
+# deployments. Note that Ping Data Console is deployed here, mainly as an aid in building
+# dsconfig scripts, it is not part of the P1AS deployment.
+#
+# You must have a Ping DevOps account and set it up using the pinggctl utility to setup
+# the proper variables with your account
+#
+# It is recommened that you create a projects folder in your deployment with a folder
+# for a specifc customer deployment.
+#
+# You can use the following export to build out the variables after you have changed
+# to reflect the actual placement on your computer
+#   export P1AS_LOCAL_DEPLOYMENT_LOCATION=<place the location here>
+#
+#   an example
+#     export P1AS_LOCAL_DEPLOYMENT_LOCATION=/Users/jdasilva/projects/p1as-docker
+#
+# Additionally at the of this file is provided sample deploymemnt of SMTP server that can
+# be used to test sending emails in PingFederate and PingDirectory if that is required for
+# testing and development. The code examples are all commented out.
+#
+services:
+  pingaccess:
+    container_name: pa-sa
+    # This is set to point to the current version of the product
+    # If the version differs for your actual customer then adjust it
+    # 1.17=image: ${PING_IDENTITY_DEVOPS_REGISTRY}/pingaccess:7.0.5-alpine_3.16.2-al11-edge
+    image: ${PING_IDENTITY_DEVOPS_REGISTRY}/pingaccess:2211.1-7.0.6
+
+    depends_on:
+      pingfederate:
+        condition: service_healthy
+    # You may need to comment this tmpfs line if you run containers on windows
+    tmpfs: /run/secrets
+    environment:
+      - SERVER_PROFILE_URL=https://github.com/pingidentity/pingidentity-server-profiles.git
+      - SERVER_PROFILE_PATH=baseline/pingaccess
+      # The version of the server profile to match the image version indicated above
+      - SERVER_PROFILE_BRANCH=2205
+
+      - OPERATIONAL_MODE=STANDALONE
+      - PA_ADMIN_PASSWORD=2FederateM0re
+      - PING_IDENTITY_ACCEPT_EULA=YES
+    env_file:
+      - ${HOME}/.pingidentity/config
+    ports:
+      - "3000:3000"
+      - "9000:9000"
+    networks:
+      - ping-p1as-net
+    volumes:
+      # You will need to adjust the folder name below, for your customer
+      # replacing p1as-docker with proper folder name on your computer.
+      # See instructions for setting the environment variabe above.
+      - ${P1AS_LOCAL_DEPLOYMENT_LOCATION}/out-volumes/pa-sa:/opt/out:consistent
+
+  pingfederate:
+    container_name: pf-sa
+    # This is set to point to the current version of the product
+    # If the version differs for your actual customer then adjust it
+    # 1.17=image: ${PING_IDENTITY_DEVOPS_REGISTRY}/pingfederate:2305-11.1.7
+    image: ${PING_IDENTITY_DEVOPS_REGISTRY}/pingfederate:2311-11.3.3
+    depends_on:
+      pingdirectory:
+        condition: service_healthy
+    # You may need to comment this tmpfs line if you run containers on windows
+    tmpfs: /run/secrets
+    environment:
+      # The version of the server profile to match the image version indicated above
+      - SERVER_PROFILE_URL=https://github.com/pingidentity/pingidentity-server-profiles.git
+      - SERVER_PROFILE_PATH=baseline/pingfederate
+      # The version of the server profile to match the image version indicated above
+      - SERVER_PROFILE_BRANCH=2305
+
+      - OPERATIONAL_MODE=STANDALONE
+      - PF_CONSOLE_AUTHENTICATION=native
+      - PF_LOG_LEVEL=DEBUG
+      - PING_IDENTITY_ACCEPT_EULA=YES
+      - PF_LDAP_PASSWORD=2FederateM0re
+    env_file:
+      - ${HOME}/.pingidentity/config
+    ports:
+      - "9999:9999"
+      - "9031:9031"
+    networks:
+      - ping-p1as-net
+    volumes:
+      # You will need to adjust the folder name below, for your customer
+      # replacing p1as-docker with proper folder name on your computer.
+      # See instructions for setting the environment variabe above.
+      - ${P1AS_LOCAL_DEPLOYMENT_LOCATION}/out-volumes/pf-sa:/opt/out:consistent
+
+  pingdirectory:
+    container_name: pd-sa
+    # This is set to point to the current version of the product
+    # If the version differs for your actual customer then adjust it
+    # 1.17=image: ${PING_IDENTITY_DEVOPS_REGISTRY}/pingdirectory:2308.1-9.2.0.2
+    image: ${PING_IDENTITY_DEVOPS_REGISTRY}/pingdirectory:2311-9.2.0.4
+
+    # You may need to comment this tmpfs line if you run containers on windows
+    tmpfs: /run/secrets
+    environment:
+      # The version of the server profile to match the image version indicated above
+      - SERVER_PROFILE_URL=https://github.com/pingidentity/pingidentity-server-profiles.git
+      - SERVER_PROFILE_PATH=baseline/pingdirectory
+      # The version of the server profile to match the image version indicated above
+      - SERVER_PROFILE_BRANCH=2305
+
+      - LDAP_PORT=1389
+      - LDAPS_PORT=1636
+      - HTTPS_PORT=1443
+      - REPLICATION_PORT=8989
+      - PING_IDENTITY_ACCEPT_EULA=YES
+      - ROOT_USER_PASSWORD=2FederateM0re
+    env_file:
+      - ${HOME}/.pingidentity/config
+    ulimits:
+      nproc:
+        soft: 16384
+        hard: 16384
+      nofile:
+        soft: 65535
+        hard: 65535
+    ports:
+      - "1636:1636"
+      - "1389:1389"
+      - "1443:1443"
+    networks:
+      ping-p1as-net:
+    volumes:
+      # You will need to adjust the folder name below, for your customer
+      # replacing p1as-docker with proper folder name on your computer.
+      # See instructions for setting the environment variabe above.
+      - ${P1AS_LOCAL_DEPLOYMENT_LOCATION}/out-volumes/pd-sa:/opt/out:consistent
+
+  pingdataconsole:
+    container_name: pdc-sa
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+        reservations:
+          memory: 2G
+    env_file:
+      - ${HOME}/.pingidentity/config
+    image: ${PING_IDENTITY_DEVOPS_REGISTRY}/pingdataconsole:2308.1-9.2.0.2
+    ports:
+      - "2443:8443"
+    networks:
+      ping-p1as-net:
+    volumes:
+      # You will need to adjust the folder name below, for your customer
+      # replacing p1as-docker with proper folder name on your computer.
+      # See instructions for setting the environment variabe above.
+      - ${P1AS_LOCAL_DEPLOYMENT_LOCATION}/out-volumes/pdc-sa:/opt/out:consistent
+
+# pingdatasync is new servce
+  pingdatasync:
+    container_name: pds-sa
+    # This is set to point to the current version of the product
+    # If the version differs for your actual customer then adjust it
+    image: ${PING_IDENTITY_DEVOPS_REGISTRY}/pingdatasync:2308.1-9.2.0.2
+
+    # You may need to comment this tmpfs line if you run containers on windows
+    tmpfs: /run/secrets
+    environment:
+      # The version of the server profile to match the image version indicated above
+      - SERVER_PROFILE_URL=https://github.com/pingidentity/pingidentity-server-profiles.git
+      # The version of the server profile to match the image version indicated above
+      # - SERVER_PROFILE_BRANCH=2305
+
+      - LDAP_PORT=7389
+      - LDAPS_PORT=7636
+      - HTTPS_PORT=7443
+      - PING_IDENTITY_ACCEPT_EULA=YES
+      - ROOT_USER_PASSWORD=2FederateM0re
+    env_file:
+      - ${HOME}/.pingidentity/config
+    ulimits:
+      nproc:
+        soft: 16384
+        hard: 16384
+      nofile:
+        soft: 65535
+        hard: 65535
+    ports:
+      - "7636:1636"
+      - "7389:1389"
+      - "7443:1443"
+    networks:
+      ping-p1as-net:
+    volumes:
+      # You will need to adjust the folder name below, for your customer
+      # replacing p1as-docker with proper folder name on your computer.
+      # See instructions for setting the environment variabe above.
+      - ${P1AS_LOCAL_DEPLOYMENT_LOCATION}/out-volumes/pds-sa:/opt/out:consistent
+
+networks:
+  ping-p1as-net:
+    ipam:
+      config:
+        - subnet: 172.19.1.0/24
+
+# SMTP Server setup instructions - if needed for testing email options in 
+# PingFederate and PingDirectory
+#
+# Using mailhog as the SMPT server
+
+# --- add following into services section of docker-compose.yaml---
+  # mailhog:
+  #   image: mailhog/mailhog:latest
+  #   restart: always
+  #   ports:
+  #     - 1025:1025 # smtp server
+  #     - 8025:8025 # web ui
+  #   networks:
+  #     - pingnet-internal # this must match services that will send emails
+# --- end of docker-compose.yaml update ---
+
+# The following commands are for creating the SMTP server config in PingDirectory
+#
+# create smtp external server
+#
+# docker exec -it pd-sa \
+#     /opt/out/instance/bin/dsconfig \
+#     --no-prompt \
+#     create-external-server \
+#     --server-name smtp-mailHog \
+#     --type smtp \
+#         --set server-host-name:localhost \
+#         --set server-port:1025
+
+#
+# set global smtp server
+#
+# docker exec -it pd-sa \
+#     /opt/out/instance/bin/dsconfig \
+#     --no-prompt \
+#     set-global-configuration-prop \
+#     --set smtp-server:smtp-mailHog
+
+#
+# Enable the multi-part email account status notification handler.
+# Note that you should have already edited the templates in the config/account-status-notification-email-templates directory as needed:
+#
+# docker exec -it pd-sa \
+#     /opt/out/instance/bin/dsconfig \
+#     --no-prompt \
+#     set-account-status-notification-handler-prop \
+#     --handler-name "Multi-Part Email" \
+#     --set enabled:true
+
+#
+# Update a password policy to use the account status notification handler.
+#
+# PASSWORD_POLICY_NAME="Default Password Policy"
+# docker exec -it pd-sa \
+#     /opt/out/instance/bin/dsconfig \
+#     --no-prompt \
+#     set-password-policy-prop \
+#     --policy-name "${PASSWORD_POLICY_NAME}" \
+#     --add "account-status-notification-handler:Multi-Part Email"
+
+#
+# log publishers
+#
+# we log any ERRORS sending emails from PD to the smtp server in the File Based Errors
+#Logger log publisher:
+#
+# grep -r "cn=Account Status Notification Handlers" /opt/out/instance/logs/*
+# /opt/out/instance/logs/errors:[06/Sep/2023:13:59:54.093 +0000] instanceName="d52d85332508" ... msg="An unexpected error occurred while trying to send an email message from the multi-part email account status notification handler defined in config entry 'cn=Multi-Part Email,cn=Account Status Notification Handlers,cn=config' for account status notification AccountStatusNotification(type='password-reset', ...  MailConnectException(Couldn't connect to host, port: localhost, 8025 ..."
+#
+# we have no way to log SUCESSFULL sends of emails from PD to the smtp server
+#
+# evidence of whether an email was successfully delivered or not would be on the SMTP server NOT PD
+
+# For PingFedrate at it as a Notification Publiuisher in the admin console.
