@@ -47,3 +47,5 @@ export ROOT_USER_PASSWORD_FILE=${ROOT_USER_PASSWORD_FILE:=/opt/staging/.sec/root
 export SYNC_BIND_DN=${SYNC_BIND_DN:=cn=sync}
 export USER_BACKEND_ID=${USER_BACKEND_ID:=userRoot}
 export USER_BASE_DN=${USER_BASE_DN:=dc=example,dc=com}
+export PF_ADMIN_USER_PASSWORD=${PF_ADMIN_USER_PASSWORD:=2FederateM0re}
+export PF_LDAP_PASSWORD=${PF_LDAP_PASSWORD:=2FederateM0re}
