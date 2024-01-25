@@ -1,3 +1,5 @@
+# variables have been escaped since this is a sample file and therefore not in use
+
 # NOTE: This is a sample dsconfig command showing how to enable pass-through authentication through P14C. All users
 # under the 'ou=admins,o=platformconfig' subtree will be passed through to P14C if local bind fails. However, the
 # pass-through plugin requires that a local entry exist for the passed-through user in the PingCloud PingDirectory
@@ -18,10 +20,10 @@ dsconfig create-plugin \
   --type ping-one-for-customers-pass-through-authentication \
   --set enabled:true \
   --set api-url:https://api.pingone.com/v1 \
-  --set auth-url:https://auth.pingone.com/${P14C_ENVIRONMENT_ID}/as/token \
-  --set oauth-client-id:${P14C_CLIENT_ID} \
-  --set oauth-client-secret:${P14C_CLIENT_SECRET} \
-  --set environment-id:${P14C_ENVIRONMENT_ID} \
+  --set auth-url:https://auth.pingone.com/$${P14C_ENVIRONMENT_ID}/as/token \
+  --set oauth-client-id:$${P14C_CLIENT_ID} \
+  --set oauth-client-secret:$${P14C_CLIENT_SECRET} \
+  --set environment-id:$${P14C_ENVIRONMENT_ID} \
   --set try-local-bind:true \
   --set included-local-entry-base-dn:ou=admins,o=platformconfig \
   --set user-mapping-local-attribute:uid \
