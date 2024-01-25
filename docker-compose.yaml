@@ -46,7 +46,7 @@ services:
       - SERVER_PROFILE_URL=https://github.com/andrewblackwell-pingidentity2/sandbox.git
       - SERVER_PROFILE_PATH=baseline/pingaccess
       # The version of the server profile to match the image version indicated above
-      - SERVER_PROFILE_BRANCH=2205
+      - SERVER_PROFILE_BRANCH=wip
 
       - OPERATIONAL_MODE=STANDALONE
       - PA_ADMIN_PASSWORD=2FederateM0re
@@ -80,7 +80,7 @@ services:
       - SERVER_PROFILE_URL=https://github.com/andrewblackwell-pingidentity2/sandbox.git
       - SERVER_PROFILE_PATH=baseline/pingfederate
       # The version of the server profile to match the image version indicated above
-      - SERVER_PROFILE_BRANCH=2305
+      - SERVER_PROFILE_BRANCH=wip
 
       - OPERATIONAL_MODE=STANDALONE
       - PF_CONSOLE_AUTHENTICATION=native
@@ -114,7 +114,7 @@ services:
       - SERVER_PROFILE_URL=https://github.com/andrewblackwell-pingidentity2/sandbox.git
       - SERVER_PROFILE_PATH=baseline/pingdirectory
       # The version of the server profile to match the image version indicated above
-      - SERVER_PROFILE_BRANCH=2305
+      - SERVER_PROFILE_BRANCH=wip
 
       - LDAP_PORT=1389
       - LDAPS_PORT=1636

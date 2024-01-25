@@ -1,0 +1,3 @@
+# 00-backends-initialize.dsconfig.subst
+dsconfig create-backend --backend-name "${PLATFORM_CONFIG_BACKEND_ID}" --type local-db --set enabled:true --set base-dn:"${PLATFORM_CONFIG_BASE_DN}" --set prime-method:none
+dsconfig create-backend --backend-name "${APP_INTEGRATIONS_BACKEND_ID}" --type local-db --set enabled:true --set base-dn:"${APP_INTEGRATIONS_BASE_DN}" --set prime-method:none
