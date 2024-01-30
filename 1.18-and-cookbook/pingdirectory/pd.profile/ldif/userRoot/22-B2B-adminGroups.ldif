@@ -1,0 +1,69 @@
+# Author:   Andy Blackwell
+# Date:     30 May 2023
+# Purpose:  B2B admin groups
+# ==============================================================================
+# === HISTORY ===
+# <Author> <Date> <Change(s) made>
+# ==============================================================================
+#
+# proxied-auth within ou=B2B,dc=example,dc=com branch (works with VA to grant required root privileges):
+#
+dn: cn=canProxy,ou=B2B,dc=example,dc=com
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: canProxy
+description: group members can proxy as a B2B entry
+
+# === repeat the next section for every business/customer/tenant ===
+#
+# replace the {BUSINESS_NAME} placeholders with correct value
+#
+#
+# all o={BUSINESS_NAME},ou=B2B,dc=example,dc=com users:
+#
+dn: cn=all-users,ou=Groups,o={BUSINESS_NAME},ou=B2B,dc=example,dc=com
+objectClass: top
+objectClass: groupOfURLs
+cn: all-users
+memberURL: ldap:///ou=People,o={BUSINESS_NAME},ou=B2B,dc=example,dc=com??sub?(object
+ Class=ubidPerson)
+
+#
+# group admins (CRUD group works with VA to grant required root privileges):
+#
+dn: cn=admin-groups-CRUD,ou=Groups,o={BUSINESS_NAME},ou=B2B,dc=example,dc=com
+objectClass: top
+objectClass: groupOfURLs
+cn: admin-groups-CRUD
+memberURL: ldap:///ou=People,o={BUSINESS_NAME},ou=B2B,dc=example,dc=com??sub?(&(obje
+ ctClass=ubidPerson)(title=admin-groups-CRUD))
+memberURL: ldap:///ou=admins,ou=admin,dc=example,dc=com??sub?(&(objectClass=ubi
+ dPerson)(title=admin-B2B-{BUSINESS_NAME}-groups-CRUD))
+
+dn: cn=admin-groups-R,ou=Groups,o={BUSINESS_NAME},ou=B2B,dc=example,dc=com
+objectClass: top
+objectClass: groupOfURLs
+cn: admin-groups-R
+memberURL: ldap:///ou=People,o={BUSINESS_NAME},ou=B2B,dc=example,dc=com??sub?(&(obje
+ ctClass=ubidPerson)(title=admin-groups-R))
+
+#
+# user admins (CRUD group works with VA to grant required root privileges):
+#
+dn: cn=admin-users-CRUD,ou=Groups,o={BUSINESS_NAME},ou=B2B,dc=example,dc=com
+objectClass: top
+objectClass: groupOfURLs
+cn: admin-users-CRUD
+memberURL: ldap:///ou=People,o={BUSINESS_NAME},ou=B2B,dc=example,dc=com??sub?(&(obje
+ ctClass=ubidPerson)(title=admin-users-CRUD))
+memberURL: ldap:///ou=admins,ou=admin,dc=example,dc=com??sub?(&(objectClass=ubi
+ dPerson)(title=admin-B2B-{BUSINESS_NAME}-users-CRUD))
+
+dn: cn=admin-users-R,ou=Groups,o={BUSINESS_NAME},ou=B2B,dc=example,dc=com
+objectClass: top
+objectClass: groupOfURLs
+cn: admin-users-R
+memberURL: ldap:///ou=People,o={BUSINESS_NAME},ou=B2B,dc=example,dc=com??sub?(&(obje
+ ctClass=ubidPerson)(title=admin-users-R))
+
+# === end of section ===

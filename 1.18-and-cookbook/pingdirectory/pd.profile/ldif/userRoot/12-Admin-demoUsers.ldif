@@ -1,0 +1,239 @@
+# Author:   Andy Blackwell
+# Date:     30 May 2023
+# Purpose:  admin demo users
+#           A plugin (if enabled) will add pf-connected-identities AUXILIARY objectClass
+#           A plugin (if enabled) will add pf-connected-identity attribute:value pair
+# ==============================================================================
+# === HISTORY ===
+# <Author> <Date> <Change(s) made>
+# ==============================================================================
+#
+# DIT administrators
+#
+dn: uid=adm-DIT-CRUD,ou=admins,ou=admin,dc=example,dc=com
+objectClass: top
+objectClass: ubidPerson
+sn: DIT
+givenName: Admin
+title: Admin-DIT-CRUD
+description: FOR DEMONSTRATION PURPOSES ONLY
+userPassword: 12Ch@racters
+uid: adm-DIT-CRUD
+
+dn: uid=adm-DIT-R,ou=admins,ou=admin,dc=example,dc=com
+objectClass: top
+objectClass: ubidPerson
+sn: DIT
+givenName: Admin
+title: Admin-DIT-R
+description: FOR DEMONSTRATION PURPOSES ONLY
+userPassword: 12Ch@racters
+uid: adm-DIT-R
+
+#
+# Schema administrators
+#
+dn: uid=adm-Schema-CRUD,ou=admins,ou=admin,dc=example,dc=com
+objectClass: top
+objectClass: ubidPerson
+sn: Schema
+givenName: Admin
+title: Admin-Schema-CRUD
+description: FOR DEMONSTRATION PURPOSES ONLY
+userPassword: 12Ch@racters
+uid: adm-Schema-CRUD
+
+# ==============================================================================
+#
+# administration users/groups demo administrators:
+#
+# can manage administration groups:
+dn: uid=adm-AdminGroups-CRUD,ou=admins,ou=admin,dc=example,dc=com
+objectClass: top
+objectClass: ubidPerson
+sn: AdminGroups
+givenName: Admin
+title: Admin-AdminGroups-CRUD
+description: FOR DEMONSTRATION PURPOSES ONLY
+userPassword: 12Ch@racters
+uid: adm-AdminGroups-CRUD
+
+# can view administration groups:
+dn: uid=adm-AdminGroups-R,ou=admins,ou=admin,dc=example,dc=com
+objectClass: top
+objectClass: ubidPerson
+sn: AdminGroups
+givenName: Admin
+title: Admin-AdminGroups-R
+description: FOR DEMONSTRATION PURPOSES ONLY
+userPassword: 12Ch@racters
+uid: adm-AdminGroups-R
+
+# can manage administration users:
+dn: uid=adm-AdminUsers-CRUD,ou=admins,ou=admin,dc=example,dc=com
+objectClass: top
+objectClass: ubidPerson
+sn: AdminUsers
+givenName: Admin
+title: Admin-AdminUsers-CRUD
+description: FOR DEMONSTRATION PURPOSES ONLY
+userPassword: 12Ch@racters
+uid: adm-AdminUsers-CRUD
+
+# can view administration users:
+dn: uid=adm-AdminUsers-R,ou=admins,ou=admin,dc=example,dc=com
+objectClass: top
+objectClass: ubidPerson
+sn: AdminUsers
+givenName: Admin
+title: Admin-AdminUsers-R
+description: FOR DEMONSTRATION PURPOSES ONLY
+userPassword: 12Ch@racters
+uid: adm-AdminUsers-R
+
+# ==============================================================================
+#
+# B2B {BUSINESS_NAME} demo administrators:
+# replace {BUSINESS_NAME} placeholders
+#
+# can manage B2B {BUSINESS_NAME} groups:
+dn: uid=admin-B2B-{BUSINESS_NAME}-groups-R,ou=admins,ou=admin,dc=example,dc=com
+objectClass: top
+objectClass: ubidPerson
+sn: Schema
+givenName: Admin
+title: admin-B2B-{BUSINESS_NAME}-groups-R
+description: FOR DEMONSTRATION PURPOSES ONLY
+userPassword: 12Ch@racters
+uid: admin-B2B-{BUSINESS_NAME}-groups-R
+
+# can view B2B {BUSINESS_NAME} groups:
+dn: uid=admin-B2B-{BUSINESS_NAME}-groups-CRUD,ou=admins,ou=admin,dc=example,dc=com
+objectClass: top
+objectClass: ubidPerson
+sn: Schema
+givenName: Admin
+title: admin-B2B-{BUSINESS_NAME}-groups-CRUD
+description: FOR DEMONSTRATION PURPOSES ONLY
+userPassword: 12Ch@racters
+uid: admin-B2B-{BUSINESS_NAME}-groups-CRUD
+
+# can manage B2B {BUSINESS_NAME} users:
+dn: uid=admin-B2B-{BUSINESS_NAME}-users-CRUD,ou=admins,ou=admin,dc=example,dc=com
+objectClass: top
+objectClass: ubidPerson
+sn: Schema
+givenName: Admin
+title: admin-B2B-{BUSINESS_NAME}-users-CRUD
+description: FOR DEMONSTRATION PURPOSES ONLY
+userPassword: 12Ch@racters
+uid: admin-B2B-{BUSINESS_NAME}-users-CRUD
+
+# can view B2B {BUSINESS_NAME} users:
+dn: uid=admin-B2B-{BUSINESS_NAME}-users-R,ou=admins,ou=admin,dc=example,dc=com
+objectClass: top
+objectClass: ubidPerson
+sn: Schema
+givenName: Admin
+userPassword: 12Ch@racters
+title: admin-B2B-{BUSINESS_NAME}-users-R
+description: FOR DEMONSTRATION PURPOSES ONLY
+userPassword: 12Ch@racters
+uid: admin-B2B-{BUSINESS_NAME}-users-R
+
+# ==============================================================================
+#
+# B2C demo administrators:
+#
+# can manage B2C groups:
+dn: uid=admin-B2C-groups-CRUD,ou=admins,ou=admin,dc=example,dc=com
+objectClass: top
+objectClass: ubidPerson
+sn: Schema
+givenName: Admin
+title: admin-B2C-groups-CRUD
+description: FOR DEMONSTRATION PURPOSES ONLY
+userPassword: 12Ch@racters
+uid: admin-B2C-groups-CRUD
+
+# can view B2C groups:
+dn: uid=admin-B2C-groups-R,ou=admins,ou=admin,dc=example,dc=com
+objectClass: top
+objectClass: ubidPerson
+sn: Schema
+givenName: Admin
+title: admin-B2C-groups-R
+description: FOR DEMONSTRATION PURPOSES ONLY
+userPassword: 12Ch@racters
+uid: admin-B2C-groups-R
+
+# can manage B2C users:
+dn: uid=admin-B2C-users-CRUD,ou=admins,ou=admin,dc=example,dc=com
+objectClass: top
+objectClass: ubidPerson
+sn: Schema
+givenName: Admin
+title: admin-B2C-users-CRUD
+description: FOR DEMONSTRATION PURPOSES ONLY
+userPassword: 12Ch@racters
+uid: admin-B2C-users-CRUD
+
+# can view B2C users:
+dn: uid=admin-B2C-users-R,ou=admins,ou=admin,dc=example,dc=com
+objectClass: top
+objectClass: ubidPerson
+sn: Schema
+givenName: Admin
+userPassword: 12Ch@racters
+title: admin-B2C-users-R
+description: FOR DEMONSTRATION PURPOSES ONLY
+userPassword: 12Ch@racters
+uid: admin-B2C-users-R
+
+# ==============================================================================
+#
+# B2E demo administrators:
+# can manage B2E groups:
+dn: uid=admin-B2E-groups-CRUD,ou=admins,ou=admin,dc=example,dc=com
+objectClass: top
+objectClass: ubidPerson
+sn: Schema
+givenName: Admin
+title: admin-B2E-groups-CRUD
+description: FOR DEMONSTRATION PURPOSES ONLY
+userPassword: 12Ch@racters
+uid: admin-B2E-groups-CRUD
+
+# can view B2E groups:
+dn: uid=admin-B2E-groups-R,ou=admins,ou=admin,dc=example,dc=com
+objectClass: top
+objectClass: ubidPerson
+sn: Schema
+givenName: Admin
+title: admin-B2E-groups-R
+description: FOR DEMONSTRATION PURPOSES ONLY
+userPassword: 12Ch@racters
+uid: admin-B2E-groups-R
+
+# can manage B2E users:
+dn: uid=admin-B2E-users-CRUD,ou=admins,ou=admin,dc=example,dc=com
+objectClass: top
+objectClass: ubidPerson
+sn: Schema
+givenName: Admin
+title: admin-B2E-users-CRUD
+description: FOR DEMONSTRATION PURPOSES ONLY
+userPassword: 12Ch@racters
+uid: admin-B2E-users-CRUD
+
+# can view B2E users:
+dn: uid=admin-B2E-users-R,ou=admins,ou=admin,dc=example,dc=com
+objectClass: top
+objectClass: ubidPerson
+sn: Schema
+givenName: Admin
+userPassword: 12Ch@racters
+title: admin-B2E-users-R
+description: FOR DEMONSTRATION PURPOSES ONLY
+userPassword: 12Ch@racters
+uid: admin-B2E-users-R

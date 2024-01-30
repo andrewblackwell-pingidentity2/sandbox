@@ -1,0 +1,47 @@
+# Author:   Andy Blackwell
+# Date:     30 May 2023
+# Purpose:  B2E DIT
+#           Some of the following ACIs have a target that includes
+#             (targetattr="*"). You may want to restrict the attributes that can 
+#             be viewed (i.e. (targetattr="attribute#1||attribute#2||attribute#3"))
+#             and then add additional ACIs (structured like these ACIs but with 
+#             new PS# identifers) to allow access to more sensitive attributes.
+# ==============================================================================
+# === HISTORY ===
+# <Author> <Date> <Change(s) made>
+# ==============================================================================
+dn: ou=B2E,dc=example,dc=com
+objectClass: top
+objectClass: organizationalUnit
+ou: B2E
+description: B2E root container
+aci: (targetfilter="(|(objectClass=ubidPerson)(objectClass=groupOf*))")(targeta
+ ttr="*")(version 3.0; acl "PS18 Users can access listed attributes from other 
+ B2E entries"; allow (all) groupdn="ldap:///cn=all-users,ou=Groups,ou=B2E,dc=ex
+ ample,dc=com";)
+
+dn: ou=Groups,ou=B2E,dc=example,dc=com
+objectClass: top
+objectClass: organizationalUnit
+ou: Groups
+aci: (targetfilter="(objectClass=groupOf*)")(version 3.0; acl "PS19 Allow B2E a
+ dministrators to manage B2E group entries"; allow (all) groupdn="ldap:///cn=ad
+ min-groups-CRUD,ou=Groups,ou=B2E,dc=example,dc=com";)
+aci: (targetfilter="(objectClass=groupOf*)")(version 3.0; acl "PS21 Allow B2E a
+ dministrators to view B2E group entries"; allow (read,search,compare) groupdn=
+ "ldap:///cn=admin-groups-R,ou=Groups,ou=B2E,dc=example,dc=com";)
+
+dn: ou=People,ou=B2E,dc=example,dc=com
+objectClass: top
+objectClass: organizationalUnit
+ou: People
+aci: (targetattr="userPassword")(version 3.0; acl "PS01 Allow users to update t
+ heir own password"; allow (write) userdn="ldap:///self";)
+aci: (targetattr="*")(version 3.0; acl "PS28 Allow users to update their own en
+ tries"; allow (write) userdn="ldap:///self";)
+aci: (targetfilter="(objectClass=ubidPerson)")(version 3.0; acl "PS20 Allow B2E
+  administrators to manage B2E user entries "; allow (all) groupdn="ldap:///cn=
+ admin-users-CRUD,ou=Groups,ou=B2E,dc=example,dc=com";)
+aci: (targetfilter="(objectClass=ubidPerson)")(version 3.0; acl "PS22 Allow B2E
+  administrators to view B2E user entries n"; allow (read,search,compare) group
+ dn="ldap:///cn=admin-users-R,ou=Groups,ou=B2E,dc=example,dc=com";)

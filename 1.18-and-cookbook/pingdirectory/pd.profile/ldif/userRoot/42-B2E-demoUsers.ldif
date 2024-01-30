@@ -1,0 +1,118 @@
+# Author:   Andy Blackwell
+# Date:     30 May 2023
+# Purpose:  B2E demo users
+#           A plugin (if enabled) will add pf-connected-identities AUXILIARY objectClass
+#           A plugin (if enabled) will add pf-connected-identity attribute:value pair
+# ==============================================================================
+# === HISTORY ===
+# <Author> <Date> <Change(s) made>
+# ==============================================================================
+dn: uid=user.0,ou=People,ou=B2E,dc=example,dc=com
+objectClass: top
+objectClass: ubidperson
+mail: user.0@example.com
+initials: KXW
+homePhone: +1 925 611 5240
+pager: +1 018 809 2379
+givenName: Karim
+employeeNumber: 0
+telephoneNumber: +1 896 751 8026
+mobile: +1 663 558 7441
+sn: Winicki
+cn: Karim Winicki
+userPassword: 12Ch@racters
+description: This is the description for B2E user: Karim Winicki.
+street: 10059 Spring Street
+st: MD
+postalAddress: Karim Winicki$10059 Spring Street$Des Moines, MD  66608
+uid: user.0
+l: Des Moines
+postalCode: 66608
+
+dn: uid=user.1,ou=People,ou=B2E,dc=example,dc=com
+objectClass: top
+objectClass: ubidperson
+mail: user.1@example.com
+initials: BTQ
+homePhone: +1 420 376 1406
+pager: +1 281 159 4900
+givenName: Bret
+employeeNumber: 1
+telephoneNumber: +1 471 085 8016
+mobile: +1 011 633 2310
+sn: Quattrucci
+cn: Bret Quattrucci
+userPassword: 12Ch@racters
+description: This is the description for B2E user: Bret Quattrucci.
+street: 98281 Wilson Street
+st: WA
+postalAddress: Bret Quattrucci$98281 Wilson Street$Shreveport, WA  90466
+uid: user.1
+l: Shreveport
+postalCode: 90466
+
+dn: uid=user.2,ou=People,ou=B2E,dc=example,dc=com
+objectClass: top
+objectClass: ubidperson
+mail: user.2@example.com
+initials: HYS
+homePhone: +1 488 338 0080
+pager: +1 659 843 3146
+givenName: Henrieta
+employeeNumber: 2
+telephoneNumber: +1 405 372 6060
+mobile: +1 566 600 1672
+sn: Schraner
+cn: Henrieta Schraner
+userPassword: 12Ch@racters
+description: This is the description for B2E user: Henrieta Schraner.
+street: 54187 Jackson Street
+st: IL
+postalAddress: Henrieta Schraner$54187 Jackson Street$Springfield, IL  81985
+uid: user.2
+l: Springfield
+postalCode: 81985
+
+dn: uid=user.3,ou=People,ou=B2E,dc=example,dc=com
+objectClass: top
+objectClass: ubidperson
+mail: user.3@example.com
+initials: BBC
+homePhone: +1 410 828 2790
+pager: +1 043 590 8995
+givenName: Breena
+employeeNumber: 3
+telephoneNumber: +1 073 700 3908
+mobile: +1 568 017 8122
+sn: Crabb
+cn: Breena Crabb
+userPassword: 12Ch@racters
+description: This is the description for B2E user: Breena Crabb.
+street: 43185 Railroad Street
+st: MS
+postalAddress: Breena Crabb$43185 Railroad Street$Savannah, MS  82802
+uid: user.3
+l: Savannah
+postalCode: 82802
+
+dn: uid=user.4,ou=People,ou=B2E,dc=example,dc=com
+objectClass: top
+objectClass: ubidperson
+mail: user.4@example.com
+initials: CEY
+homePhone: +1 092 062 0202
+pager: +1 508 762 6327
+givenName: Chitra
+employeeNumber: 4
+telephoneNumber: +1 954 530 7207
+mobile: +1 015 460 8806
+sn: Yun
+cn: Chitra Yun
+userPassword: 12Ch@racters
+description: This is the description for B2E user: Chitra Yun.
+street: 01457 Eighth Street
+st: WV
+postalAddress: Chitra Yun$01457 Eighth Street$Albuquerque, WV  51676
+uid: user.4
+l: Albuquerque
+postalCode: 51676
