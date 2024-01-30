@@ -1,0 +1,123 @@
+# Author:   Andy Blackwell
+# Date:     30 May 2023
+# Purpose:  B2B {BUSINESS_NAME} demo users
+#           replace {BUSINESS_NAME} Placeholders
+# ==============================================================================
+# === HISTORY ===
+# <Author> <Date> <Change(s) made>
+# ==============================================================================
+dn: uid=user.0,ou=People,o={BUSINESS_NAME},ou=B2B,{USER_BASE_DN}
+objectClass: top
+objectClass: ubidperson
+mail: user.0@{BUSINESS_NAME}.com
+initials: WFL
+o: {BUSINESS_NAME}
+homePhone: +1 678 062 1524
+pager: +1 176 057 0095
+givenName: Wilhelmus
+employeeNumber: 0
+telephoneNumber: +1 909 814 7308
+mobile: +1 378 949 4667
+sn: Lemieux
+cn: Wilhelmus Lemieux
+userPassword: {SSHA256}KblvlDhVHT3OA6Z5XIcKHVqofN1hOH//9LX+6Yrj7ugM7cmRNMCjvQ==
+description: This is the description for {BUSINESS_NAME} B2B user: Wilhelmus Lemieux
+uid: user.0
+street: 18961 South Street
+st: NV
+postalAddress: Wilhelmus Lemieux$18961 South Street$West Palm Beach, NV  40792
+uid: user.0
+l: West Palm Beach
+postalCode: 40792
+title: admin-groups-CRUD
+
+dn: uid=user.1,ou=People,o={BUSINESS_NAME},ou=B2B,{USER_BASE_DN}
+objectClass: top
+objectClass: ubidperson
+mail: user.1@{BUSINESS_NAME}.com
+initials: FQP
+o: {BUSINESS_NAME}
+homePhone: +1 483 469 0694
+pager: +1 936 213 8707
+givenName: Fionan
+employeeNumber: 1
+telephoneNumber: +1 358 519 6913
+mobile: +1 037 306 4026
+sn: Palczuk
+cn: Fionan Palczuk
+userPassword: 12Ch@racters
+description: This is the description for {BUSINESS_NAME} B2B user: Fionan Palczuk.
+street: 73001 Main Street
+st: NV
+postalAddress: Fionan Palczuk$73001 Main Street$Detroit, NV  06814
+uid: user.1
+l: Detroit
+postalCode: 06814
+
+dn: uid=user.2,ou=People,o={BUSINESS_NAME},ou=B2B,{USER_BASE_DN}
+objectClass: top
+objectClass: ubidperson
+mail: user.2@{BUSINESS_NAME}.com
+initials: CKH
+o: {BUSINESS_NAME}
+homePhone: +1 553 907 5086
+pager: +1 760 722 2415
+givenName: Connie
+employeeNumber: 2
+telephoneNumber: +1 944 797 0541
+mobile: +1 934 592 2972
+sn: Hafermalz
+cn: Connie Hafermalz
+userPassword: 12Ch@racters
+description: This is the description for {BUSINESS_NAME} B2B user: Connie Hafermalz.
+street: 40824 Sunset Street
+st: VT
+postalAddress: Connie Hafermalz$40824 Sunset Street$Buffalo, VT  61022
+uid: user.2
+l: Buffalo
+postalCode: 61022
+
+dn: uid=user.3,ou=People,o={BUSINESS_NAME},ou=B2B,{USER_BASE_DN}
+objectClass: top
+objectClass: ubidperson
+mail: user.3@{BUSINESS_NAME}.com
+initials: KRB
+o: {BUSINESS_NAME}
+homePhone: +1 064 059 6624
+pager: +1 077 025 3114
+givenName: Kassi
+employeeNumber: 3
+telephoneNumber: +1 468 200 5352
+mobile: +1 265 037 9281
+cn: Kassi Bello
+userPassword: 12Ch@racters
+description: This is the description for {BUSINESS_NAME} B2B user: Kassi Bello.
+street: 35406 Locust Street
+st: UT
+postalAddress: Kassi Bello$35406 Locust Street$Philadelphia, UT  67025
+uid: user.3
+l: Philadelphia
+postalCode: 67025
+
+dn: uid=user.4,ou=People,o={BUSINESS_NAME},ou=B2B,{USER_BASE_DN}
+objectClass: top
+objectClass: ubidperson
+mail: user.4@{BUSINESS_NAME}.com
+initials: ENM
+o: {BUSINESS_NAME}
+homePhone: +1 808 986 5005
+pager: +1 599 634 6004
+givenName: Ediva
+employeeNumber: 4
+telephoneNumber: +1 755 082 7225
+mobile: +1 566 591 2721
+sn: McMinn
+cn: Ediva McMinn
+userPassword: 12Ch@racters
+description: This is the description for {BUSINESS_NAME} B2B user: Ediva McMinn.
+street: 75438 Ninth Street
+st: SC
+postalAddress: Ediva McMinn$75438 Ninth Street$Charleston, SC  08791
+uid: user.4
+l: Charleston
+postalCode: 08791

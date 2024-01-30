@@ -1,0 +1,27 @@
+# Author:   Andy Blackwell
+# Date:     30 May 2023
+# Purpose:  B2B Busness DIT. Create one of these files for every business that
+#             needs to be stored wthn the drectory
+#
+# replace the {BUSINESS_NAME} placeholders with correct value
+# IMPORTANT B2B uses parameterized AC's placed at the ou=B2B,{USER_BASE_DN} level
+# ==============================================================================
+# === HISTORY ===
+# <Author> <Date> <Change(s) made>
+# ==============================================================================
+#
+dn: o={BUSINESS_NAME},ou=B2B,{USER_BASE_DN}
+objectClass: top
+objectClass: organization
+o: {BUSINESS_NAME}
+description: {BUSINESS_NAME} root container
+
+dn: ou=Groups,o={BUSINESS_NAME},ou=B2B,{USER_BASE_DN}
+objectClass: top
+objectClass: organizationalUnit
+ou: Groups
+
+dn: ou=People,o={BUSINESS_NAME},ou=B2B,{USER_BASE_DN}
+objectClass: top
+objectClass: organizationalUnit
+ou: People

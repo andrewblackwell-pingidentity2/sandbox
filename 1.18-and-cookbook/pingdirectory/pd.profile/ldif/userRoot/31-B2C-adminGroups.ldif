@@ -1,0 +1,59 @@
+# Author:   Andy Blackwell
+# Date:     30 May 2023
+# Purpose:  B2C admin groups
+# ==============================================================================
+# === HISTORY ===
+# <Author> <Date> <Change(s) made>
+# ==============================================================================
+#
+# all B2C users:
+#
+dn: cn=all-users,ou=Groups,ou=B2C,{USER_BASE_DN}
+objectClass: top
+objectClass: groupOfURLs
+cn: all-users
+memberURL: ldap:///ou=People,ou=B2C,{USER_BASE_DN}??sub?(objectClass=ubidPer
+ son)
+
+#
+# proxied-auth within ou=B2C,{USER_BASE_DN} branch (works with VA to grant required root privileges):
+#
+dn: cn=canProxy,ou=Groups,ou=B2C,{USER_BASE_DN}
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: canProxy
+description: group members can proxy as a B2C entry
+
+#
+# group admins (CRUD group works with VA to grant required root privileges):
+#
+dn: cn=admin-groups-CRUD,ou=Groups,ou=B2C,{USER_BASE_DN}
+objectClass: top
+objectClass: groupOfURLs
+cn: admin-groups-CRUD
+memberURL: ldap:///ou=People,ou=B2C,{USER_BASE_DN}??sub?(&(objectClass=ubidP
+ erson)(title=admin-groups-CRUD))
+
+dn: cn=admin-groups-R,ou=Groups,ou=B2C,{USER_BASE_DN}
+objectClass: top
+objectClass: groupOfURLs
+cn: admin-groups-R
+memberURL: ldap:///ou=People,ou=B2C,{USER_BASE_DN}??sub?(&(objectClass=ubidP
+ erson)(title=admin-groups-R))
+
+#
+# user admins (CRUD group works with VA to grant required root privileges):
+#
+dn: cn=admin-users-CRUD,ou=Groups,ou=B2C,{USER_BASE_DN}
+objectClass: top
+objectClass: groupOfURLs
+cn: admin-users-CRUD
+memberURL: ldap:///ou=People,ou=B2C,{USER_BASE_DN}??sub?(&(objectClass=ubidP
+ erson)(title=admin-users-CRUD))
+
+dn: cn=admin-users-R,ou=Groups,ou=B2C,{USER_BASE_DN}
+objectClass: top
+objectClass: groupOfURLs
+cn: admin-users-R
+memberURL: ldap:///ou=People,ou=B2C,{USER_BASE_DN}??sub?(&(objectClass=ubidP
+ erson)(title=admin-users-R))
