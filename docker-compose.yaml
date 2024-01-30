@@ -112,7 +112,8 @@ services:
     environment:
       # The version of the server profile to match the image version indicated above
       - SERVER_PROFILE_URL=https://github.com/andrewblackwell-pingidentity2/sandbox.git
-      - SERVER_PROFILE_PATH=1.18-release-branch/pingdirectory
+      # - SERVER_PROFILE_PATH=1.18-release-branch/pingdirectory
+      - SERVER_PROFILE_PATH=1.18-and-cookbook/pingdirectory
       # The version of the server profile to match the image version indicated above
       - SERVER_PROFILE_BRANCH=wip
 
