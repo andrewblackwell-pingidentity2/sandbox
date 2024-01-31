@@ -62,7 +62,9 @@ services:
       # You will need to adjust the folder name below, for your customer
       # replacing p1as-docker with proper folder name on your computer.
       # See instructions for setting the environment variabe above.
-      - ${P1AS_LOCAL_DEPLOYMENT_LOCATION}/out-volumes/pa-sa:/opt/out:consistent
+      # - ${P1AS_LOCAL_DEPLOYMENT_LOCATION}/out-volumes/baseline/pa-sa:/opt/out:consistent
+      # - ${P1AS_LOCAL_DEPLOYMENT_LOCATION}/out-volumes/1.18/pa-sa:/opt/out:consistent
+      - ${P1AS_LOCAL_DEPLOYMENT_LOCATION}/out-volumes/1.18_and_cookbook/pa-sa:/opt/out:consistent
 
   pingfederate:
     container_name: pf-sa
@@ -98,7 +100,9 @@ services:
       # You will need to adjust the folder name below, for your customer
       # replacing p1as-docker with proper folder name on your computer.
       # See instructions for setting the environment variabe above.
-      - ${P1AS_LOCAL_DEPLOYMENT_LOCATION}/out-volumes/pf-sa:/opt/out:consistent
+      # - ${P1AS_LOCAL_DEPLOYMENT_LOCATION}/out-volumes/baseline/pf-sa:/opt/out:consistent
+      # - ${P1AS_LOCAL_DEPLOYMENT_LOCATION}/out-volumes/1.18/pf-sa:/opt/out:consistent
+      - ${P1AS_LOCAL_DEPLOYMENT_LOCATION}/out-volumes/1.18_and_cookbook/pf-sa:/opt/out:consistent
 
   pingdirectory:
     container_name: pd-sa
@@ -112,6 +116,7 @@ services:
     environment:
       # The version of the server profile to match the image version indicated above
       - SERVER_PROFILE_URL=https://github.com/andrewblackwell-pingidentity2/sandbox.git
+      # - SERVER_PROFILE_PATH=baseline/pingdirectory
       # - SERVER_PROFILE_PATH=1.18-release-branch/pingdirectory
       - SERVER_PROFILE_PATH=1.18-and-cookbook/pingdirectory
       # The version of the server profile to match the image version indicated above
@@ -142,7 +147,9 @@ services:
       # You will need to adjust the folder name below, for your customer
       # replacing p1as-docker with proper folder name on your computer.
       # See instructions for setting the environment variabe above.
-      - ${P1AS_LOCAL_DEPLOYMENT_LOCATION}/out-volumes/pd-sa:/opt/out:consistent
+      # - ${P1AS_LOCAL_DEPLOYMENT_LOCATION}/out-volumes/baseline/pd-sa:/opt/out:consistent
+      # - ${P1AS_LOCAL_DEPLOYMENT_LOCATION}/out-volumes/1.18/pd-sa:/opt/out:consistent
+      - ${P1AS_LOCAL_DEPLOYMENT_LOCATION}/out-volumes/1.18_and_cookbook/pd-sa:/opt/out:consistent
 
   pingdataconsole:
     container_name: pdc-sa
@@ -163,7 +170,9 @@ services:
       # You will need to adjust the folder name below, for your customer
       # replacing p1as-docker with proper folder name on your computer.
       # See instructions for setting the environment variabe above.
-      - ${P1AS_LOCAL_DEPLOYMENT_LOCATION}/out-volumes/pdc-sa:/opt/out:consistent
+      # - ${P1AS_LOCAL_DEPLOYMENT_LOCATION}/out-volumes/baseline/pdc-sa:/opt/out:consistent
+      # - ${P1AS_LOCAL_DEPLOYMENT_LOCATION}/out-volumes/1.18/pdc-sa:/opt/out:consistent
+      - ${P1AS_LOCAL_DEPLOYMENT_LOCATION}/out-volumes/1.18_and_cookbook/pdc-sa:/opt/out:consistent
 
 # pingdatasync is new servce
   pingdatasync:
@@ -204,7 +213,9 @@ services:
       # You will need to adjust the folder name below, for your customer
       # replacing p1as-docker with proper folder name on your computer.
       # See instructions for setting the environment variabe above.
-      - ${P1AS_LOCAL_DEPLOYMENT_LOCATION}/out-volumes/pds-sa:/opt/out:consistent
+      # - ${P1AS_LOCAL_DEPLOYMENT_LOCATION}/out-volumes/baseline/pds-sa:/opt/out:consistent
+      # - ${P1AS_LOCAL_DEPLOYMENT_LOCATION}/out-volumes/1.18/pds-sa:/opt/out:consistent
+      - ${P1AS_LOCAL_DEPLOYMENT_LOCATION}/out-volumes/1.18_and_cookbook/pds-sa:/opt/out:consistent
 
 networks:
   ping-p1as-net:

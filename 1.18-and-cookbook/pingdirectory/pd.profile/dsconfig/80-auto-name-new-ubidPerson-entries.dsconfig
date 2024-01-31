@@ -1,0 +1,21 @@
+# Author:   Andy Blackwell
+# Date:     30 May 2023
+# Purpose:  Autoname new ubidPerson entries anywhere in DIT with entryUUID.
+#           Excludes entries within ou=admins,ou=admin,{USER_BASE_DN} branch
+#           IMPORTANT. users/application accounts that will create new ubidPerson
+#           entries will also need access to following controls via ACI:
+#               Permit entryUUID Naming Attribute Request Control
+#               LDAP Post-Read Request and Response Control
+# ==============================================================================
+# === HISTORY ===
+# <Author> <Date> <Change(s) made>
+# ==============================================================================
+bin/dsconfig create-request-criteria \
+    --criteria-name 'auto-rename-new-ubidPerson-entries'  \
+    --type simple  \
+    --set operation-type:add  \
+    --set excluded-target-entry-dn:ou=admins,ou=admin,dc=example,dc=com  \
+    --set any-included-target-entry-filter:"(objectClass=ubidPerson)"
+
+bin/dsconfig set-global-configuration-prop \
+    --set 'auto-name-with-entry-uuid-request-criteria:Auto-rename-new-ubidPerson-entries'

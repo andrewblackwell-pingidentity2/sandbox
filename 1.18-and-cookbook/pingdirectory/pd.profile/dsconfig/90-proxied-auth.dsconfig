@@ -1,0 +1,18 @@
+# Author:   Andy Blackwell
+# Date:     30 May 2023
+# Purpose:  grants proxied-auth root privileges to members of listed groups
+# ==============================================================================
+# === HISTORY ===
+# <Author> <Date> <Change(s) made>
+# ==============================================================================
+dsconfig create-virtual-attribute \
+    --name 'proxiedAuth privileges'  \
+    --type user-defined  \
+    --set 'description:Assigning ds-privileges to proxiedAuth users'  \
+    --set enabled:true  \
+    --set attribute-type:ds-privilege-name  \
+    --set group-dn:cn=canProxy,ou=adminGroups,ou=admin,dc=example,dc=com  \
+    --set group-dn:cn=canProxy,ou=B2B,dc=example,dc=com  \
+    --set group-dn:cn=canProxy,ou=Groups,ou=B2C,dc=example,dc=com  \
+    --set group-dn:cn=canProxy,ou=Groups,ou=B2E,dc=example,dc=com  \
+    --set value:proxied-auth 
