@@ -1,0 +1,10 @@
+# Author:   Andy Blackwell
+# Date:     30 May 2023
+# Purpose:  enables the audit logger for tracking CRUD actions
+# ==============================================================================
+# === HISTORY ===
+# <Author> <Date> <Change(s) made>
+# ==============================================================================
+dsconfig set-log-publisher-prop \
+    --publisher-name 'File-Based Audit Logger'  \
+    --set enabled:true 
